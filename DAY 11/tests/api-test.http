@@ -1,0 +1,59 @@
+### Test Student CRUD API
+
+### Base URL
+@baseUrl = http://localhost:5000/api/students
+
+### Get all students
+GET {{baseUrl}}
+
+### Get student by ID
+GET {{baseUrl}}/1
+
+### Create new student
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "name": "Alice Cooper",
+  "email": "alice.cooper@example.com",
+  "age": 20,
+  "grade": "A"
+}
+
+### Update student
+PUT {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "name": "John Doe Updated",
+  "email": "john.updated@example.com",
+  "grade": "A"
+}
+
+### Delete student
+DELETE {{baseUrl}}/3
+
+### Test validation - Invalid email
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "name": "Invalid User",
+  "email": "not-an-email",
+  "age": 20,
+  "grade": "A"
+}
+
+### Test validation - Invalid grade
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "name": "Invalid Grade",
+  "email": "valid@example.com",
+  "age": 20,
+  "grade": "Z"
+}
+
+### Test 404 - Student not found
+GET {{baseUrl}}/999
