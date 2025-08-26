@@ -1,0 +1,107 @@
+.profile-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+}
+
+.profile-card__header {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.profile-card__avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid white;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.profile-card__name {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.profile-card__role {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.profile-card__body {
+  padding: 1.5rem;
+}
+
+.profile-card__bio {
+  margin-bottom: 1.5rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.profile-card__skills {
+  margin-top: 1rem;
+}
+
+.profile-card__skills h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.profile-card__skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.profile-card__skill {
+  background-color: #f0f2f5;
+  color: #333;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.profile-card__footer {
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+}
+
+.profile-card__button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #2575fc;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-card__button:hover {
+  background-color: #1a5dc7;
+}
+
+.profile-card__button--secondary {
+  background-color: transparent;
+  color: #2575fc;
+  border: 1px solid #2575fc;
+}
+
+.profile-card__button--secondary:hover {
+  background-color: rgba(37, 117, 252, 0.1);
+}
