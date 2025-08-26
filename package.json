@@ -1,0 +1,13 @@
+{
+  "name": "hello-world-api",
+  "version": "1.0.0",
+  "description": "A simple API that returns HELLO,WORLD",
+  "main": "hello_world_api.js",
+  "scripts": {
+    "start": "node hello_world_api.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
