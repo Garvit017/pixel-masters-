@@ -1,13 +1,21 @@
 {
-  "name": "hello-world-api",
+  "name": "student-api",
   "version": "1.0.0",
-  "description": "A simple API that returns HELLO,WORLD",
-  "main": "hello_world_api.js",
+  "description": "A simple API that returns a list of students in JSON format",
+  "main": "index.js",
   "scripts": {
-    "start": "node hello_world_api.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "api",
+    "students",
+    "json"
+  ],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
   }
 }
