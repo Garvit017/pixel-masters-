@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .subject-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .subject-row input {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .subject-row input:last-child {
+            margin-right: 0;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .btn-add {
+            background-color: #2ecc71;
+        }
+        .btn-add:hover {
+            background-color: #27ae60;
+        }
+        .btn-remove {
+            background-color: #e74c3c;
+        }
+        .btn-remove:hover {
+            background-color: #c0392b;
+        }
+        .result-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+        }
+        .result-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .result-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .grade {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .grade-a {
+            color: #2ecc71;
+        }
+        .grade-b {
+            color: #3498db;
+        }
+        .grade-c {
+            color: #f39c12;
+        }
+        .grade-d {
+            color: #e67e22;
+        }
+        .grade-f {
+            color: #e74c3c;
+        }
+        .subject-list {
+            margin-top: 20px;
+        }
+        .actions {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Marks Calculator</h1>
+        
+        <div class="form-group">
+            <label for="student-name">Student Name:</label>
+            <input type="text" id="student-name" placeholder="Enter student name">
+        </div>
+        
+        <div class="subject-list" id="subject-list">
+            <div class="subject-row">
+                <input type="text" class="subject-name" placeholder="Subject Name" value="Mathematics">
+                <input type="number" class="max-marks" placeholder="Max Marks" value="100">
+                <input type="number" class="obtained-marks" placeholder="Obtained Marks" value="85">
+            </div>
+            <div class="subject-row">
+                <input type="text" class="subject-name" placeholder="Subject Name" value="Science">
+                <input type="number" class="max-marks" placeholder="Max Marks" value="100">
+                <input type="number" class="obtained-marks" placeholder="Obtained Marks" value="78">
+            </div>
+            <div class="subject-row">
+                <input type="text" class="subject-name" placeholder="Subject Name" value="English">
+                <input type="number" class="max-marks" placeholder="Max Marks" value="100">
+                <input type="number" class="obtained-marks" placeholder="Obtained Marks" value="92">
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-add" id="add-subject">Add Subject</button>
+            <button class="btn btn-remove" id="remove-subject">Remove Subject</button>
+        </div>
+        
+        <button class="btn" id="calculate">Calculate Results</button>
+        
+        <div class="result-section" id="result" style="display: none;">
+            <h3>Results for <span id="result-name">Student</span></h3>
+            
+            <div class="result-item">
+                <strong>Total Marks:</strong> <span id="total-marks">0</span> / <span id="total-max-marks">0</span>
+            </div>
+            
+            <div class="result-item">
+                <strong>Percentage:</strong> <span id="percentage">0</span>%
+            </div>
+            
+            <div class="result-item">
+                <strong>Grade:</strong> <span id="grade" class="grade">N/A</span>
+            </div>
+            
+            <div class="result-item">
+                <strong>Result:</strong> <span id="pass-fail">N/A</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to add a new subject row
+        document.getElementById('add-subject').addEventListener('click', function() {
+            const subjectList = document.getElementById('subject-list');
+            const newRow = document.createElement('div');
+            newRow.className = 'subject-row';
+            newRow.innerHTML = `
+                <input type="text" class="subject-name" placeholder="Subject Name">
+                <input type="number" class="max-marks" placeholder="Max Marks" value="100">
+                <input type="number" class="obtained-marks" placeholder="Obtained Marks">
+            `;
+            subjectList.appendChild(newRow);
+        });
+        
+        // Function to remove the last subject row
+        document.getElementById('remove-subject').addEventListener('click', function() {
+            const subjectList = document.getElementById('subject-list');
+            if (subjectList.children.length > 1) {
+                subjectList.removeChild(subjectList.lastChild);
+            }
+        });
+        
+        // Function to calculate results
+        document.getElementById('calculate').addEventListener('click', function() {
+            // Get student name
+            const studentName = document.getElementById('student-name').value || 'Student';
+            
+            // Get all subject rows
+            const subjectRows = document.querySelectorAll('.subject-row');
+            
+            let totalObtainedMarks = 0;
+            let totalMaxMarks = 0;
+            
+            // Calculate total marks
+            subjectRows.forEach(row => {
+                const obtainedMarks = parseFloat(row.querySelector('.obtained-marks').value) || 0;
+                const maxMarks = parseFloat(row.querySelector('.max-marks').value) || 0;
+                
+                totalObtainedMarks += obtainedMarks;
+                totalMaxMarks += maxMarks;
+            });
+            
+            // Calculate percentage
+            const percentage = totalMaxMarks > 0 ? (totalObtainedMarks / totalMaxMarks) * 100 : 0;
+            
+            // Determine grade
+            let grade, gradeClass, passFail;
+            
+            if (percentage >= 90) {
+                grade = 'A+';
+                gradeClass = 'grade-a';
+                passFail = 'Pass with Distinction';
+            } else if (percentage >= 80) {
+                grade = 'A';
+                gradeClass = 'grade-a';
+                passFail = 'Pass with Excellence';
+            } else if (percentage >= 70) {
+                grade = 'B';
+                gradeClass = 'grade-b';
+                passFail = 'Pass with Very Good';
+            } else if (percentage >= 60) {
+                grade = 'C';
+                gradeClass = 'grade-c';
+                passFail = 'Pass with Good';
+            } else if (percentage >= 50) {
+                grade = 'D';
+                gradeClass = 'grade-d';
+                passFail = 'Pass';
+            } else {
+                grade = 'F';
+                gradeClass = 'grade-f';
+                passFail = 'Fail';
+            }
+            
+            // Display results
+            document.getElementById('result-name').textContent = studentName;
+            document.getElementById('total-marks').textContent = totalObtainedMarks.toFixed(1);
+            document.getElementById('total-max-marks').textContent = totalMaxMarks.toFixed(1);
+            document.getElementById('percentage').textContent = percentage.toFixed(2);
+            
+            const gradeElement = document.getElementById('grade');
+            gradeElement.textContent = grade;
+            gradeElement.className = 'grade ' + gradeClass;
+            
+            document.getElementById('pass-fail').textContent = passFail;
+            
+            // Show result section
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
