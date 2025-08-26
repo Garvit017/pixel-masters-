@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .student-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .student-name {
+            font-size: 1.5em;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        .student-info {
+            margin-bottom: 5px;
+        }
+        .grades-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .grades-table th, .grades-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .grades-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Details</h1>
+        <div id="student-details"></div>
+    </div>
+
+    <script>
+        // Define a student object with various properties
+        const student = {
+            id: "S12345",
+            name: "John Doe",
+            age: 20,
+            email: "john.doe@example.com",
+            phone: "123-456-7890",
+            address: {
+                street: "123 Main St",
+                city: "New York",
+                state: "NY",
+                zipCode: "10001"
+            },
+            courses: [
+                { name: "Mathematics", code: "MATH101", grade: "A" },
+                { name: "Computer Science", code: "CS102", grade: "A-" },
+                { name: "Physics", code: "PHY103", grade: "B+" },
+                { name: "English Literature", code: "ENG104", grade: "B" }
+            ],
+            gpa: 3.7,
+            isEnrolled: true,
+            enrollmentDate: new Date(2022, 8, 1), // September 1, 2022
+            graduationYear: 2026,
+            achievements: ["Dean's List 2022", "Programming Competition Winner", "Academic Scholarship Recipient"]
+        };
+
+        // Function to print student details
+        function printStudentDetails(student) {
+            const studentDetailsElement = document.getElementById('student-details');
+            
+            // Create HTML content for student details
+            let html = `
+                <div class="student-card">
+                    <div class="student-name">${student.name}</div>
+                    <div class="student-info"><strong>ID:</strong> ${student.id}</div>
+                    <div class="student-info"><strong>Age:</strong> ${student.age}</div>
+                    <div class="student-info"><strong>Email:</strong> ${student.email}</div>
+                    <div class="student-info"><strong>Phone:</strong> ${student.phone}</div>
+                    <div class="student-info"><strong>Address:</strong> ${student.address.street}, ${student.address.city}, ${student.address.state} ${student.address.zipCode}</div>
+                    <div class="student-info"><strong>GPA:</strong> ${student.gpa}</div>
+                    <div class="student-info"><strong>Status:</strong> ${student.isEnrolled ? 'Enrolled' : 'Not Enrolled'}</div>
+                    <div class="student-info"><strong>Enrollment Date:</strong> ${student.enrollmentDate.toLocaleDateString()}</div>
+                    <div class="student-info"><strong>Expected Graduation:</strong> ${student.graduationYear}</div>
+                    
+                    <div class="student-info"><strong>Achievements:</strong></div>
+                    <ul>
+                        ${student.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
+                    </ul>
+                    
+                    <div class="student-info"><strong>Courses & Grades:</strong></div>
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Course Name</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${student.courses.map(course => `
+                                <tr>
+                                    <td>${course.code}</td>
+                                    <td>${course.name}</td>
+                                    <td>${course.grade}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            // Set the HTML content
+            studentDetailsElement.innerHTML = html;
+        }
+
+        // Call the function to print student details when the page loads
+        window.onload = function() {
+            printStudentDetails(student);
+        };
+    </script>
+</body>
+</html>
