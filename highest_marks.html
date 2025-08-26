@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Highest Marks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-section {
+            margin-bottom: 20px;
+        }
+        .input-section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-section input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .result-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+        }
+        .marks-list {
+            margin-top: 15px;
+        }
+        .marks-list div {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .marks-list div:last-child {
+            border-bottom: none;
+        }
+        .highest {
+            background-color: #e8f4fd;
+            font-weight: bold;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Highest Marks</h1>
+        
+        <div class="input-section">
+            <label for="marks-input">Enter student marks (comma-separated):</label>
+            <input type="text" id="marks-input" placeholder="e.g., 85, 92, 78, 95, 88" value="85, 92, 78, 95, 88, 76, 90, 83">
+        </div>
+        
+        <button class="btn" id="find-highest">Find Highest Marks</button>
+        
+        <div class="result-section" id="result" style="display: none;">
+            <h3>Results:</h3>
+            <p>Highest Mark: <span id="highest-mark"></span></p>
+            
+            <h3>All Marks:</h3>
+            <div class="marks-list" id="marks-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to find the highest mark in an array
+        function findHighestMark(marks) {
+            if (!Array.isArray(marks) || marks.length === 0) {
+                return null;
+            }
+            return Math.max(...marks);
+        }
+        
+        // Function to handle the button click
+        document.getElementById('find-highest').addEventListener('click', function() {
+            // Get the input value
+            const marksInput = document.getElementById('marks-input').value;
+            
+            // Parse the input into an array of numbers
+            const marksArray = marksInput.split(',').map(mark => {
+                return parseFloat(mark.trim());
+            }).filter(mark => !isNaN(mark)); // Filter out any non-numeric values
+            
+            if (marksArray.length === 0) {
+                alert('Please enter valid marks!');
+                return;
+            }
+            
+            // Find the highest mark
+            const highestMark = findHighestMark(marksArray);
+            
+            // Display the result
+            document.getElementById('highest-mark').textContent = highestMark;
+            
+            // Display all marks, highlighting the highest
+            const marksList = document.getElementById('marks-list');
+            marksList.innerHTML = '';
+            
+            marksArray.forEach(mark => {
+                const markElement = document.createElement('div');
+                markElement.textContent = mark;
+                if (mark === highestMark) {
+                    markElement.classList.add('highest');
+                }
+                marksList.appendChild(markElement);
+            });
+            
+            // Show the result section
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
