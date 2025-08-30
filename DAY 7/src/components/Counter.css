@@ -1,0 +1,90 @@
+/* Counter.css */
+.counter {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.counter-display {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.counter-display h3 {
+  margin: 0;
+}
+
+.counter-display span {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.positive {
+  color: #28a745;
+}
+
+.negative {
+  color: #dc3545;
+}
+
+.counter-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.counter-advanced {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.counter-explanation {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.counter-explanation code {
+  background-color: #e0e0e0;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
