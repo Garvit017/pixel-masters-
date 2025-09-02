@@ -1,0 +1,10 @@
+/* This file can be used for any global styles that aren't handled by Tailwind */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
